@@ -2,6 +2,10 @@ require("dotenv").config();
 const rwClient = require("./twitterClient");
 const axios = require("axios");
 const cron = require("cron").CronJob;
+const express = require("express");
+
+const app = express();
+const port = process.env.PORT || 3000;
 
 const tweet = async () => {
   try {
@@ -27,9 +31,18 @@ const tweet = async () => {
   }
 };
 
+// Set the cron expression to run at 7:00 AM every day
 const job = new cron("0 7 * * *", () => {
   console.log("Job running");
   tweet();
 });
 
 job.start();
+
+app.get("/", (req, res) => {
+  res.send("Hello, this is your Express GET route!");
+});
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
