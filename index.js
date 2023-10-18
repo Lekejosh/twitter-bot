@@ -39,7 +39,7 @@ const job = new cron("0 7 * * *", () => {
 job.start();
 
 app.get("/", (req, res) => {
-  res.send("Hello, this is your Express GET route!");
+  res.send("Server is working...");
 });
 
 app.listen(port, () => {
