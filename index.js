@@ -14,7 +14,7 @@ const tweet = async () => {
       url: "https://quotel-quotes.p.rapidapi.com/quotes/random",
       headers: {
         "content-type": "application/json",
-        "X-RapidAPI-Key": "24736236demshefa578f021de88ep126b89jsn2e4a4fb05a68",
+        "X-RapidAPI-Key": process.env.rapid_api,
         "X-RapidAPI-Host": "quotel-quotes.p.rapidapi.com",
       },
       data: {
@@ -31,7 +31,6 @@ const tweet = async () => {
   }
 };
 
-// Set the cron expression to run at 7:00 AM every day
 const job = new cron("0 7 * * *", () => {
   console.log("Job running");
   tweet();
